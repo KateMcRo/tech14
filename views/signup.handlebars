@@ -1,1 +1,65 @@
-<h1>Sign Up View</h1>
+<h1>Sign Up</h1>
+<form class="box">
+  <div class="field">
+    <label class="label">Username</label>
+    <div class="control has-icons-left has-icons-right">
+      <input
+        class="input is-rounded"
+        type="text"
+        placeholder="Username"
+        value=""
+        autocomplete="username"
+        id="username"
+      />
+      <span class="icon is-small is-left">
+        <i class="fas fa-user"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Password</label>
+    <div class="control has-icons-left has-icons-right">
+      <input
+        class="input is-rounded"
+        type="password"
+        placeholder="Password"
+        value=""
+        autocomplete="new-password"
+        id="password"
+      />
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Re-type Password</label>
+    <div class="control has-icons-left has-icons-right">
+      <input
+        class="input is-rounded"
+        type="password"
+        placeholder="Password"
+        value=""
+        autocomplete="new-password"
+        id="validate"
+      />
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <button class="button is-link is-rounded" id="signUpBtn">Sign Up</button>
+    </div>
+    <div class="control">
+      <button class="button is-link is-light is-rounded" id="login">Log In
+        Instead</button>
+    </div>
+  </div>
+  <script src="/signup.js"></script>
+
+</form>
