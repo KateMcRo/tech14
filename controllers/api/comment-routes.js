@@ -17,9 +17,9 @@ router.get("/:id", async(req, res) => {
 
 router.post("/create", async (req, res) => {
     try {
-      const { comment, userId, postId } = req.body;
+      const { comment, postId } = req.body;
   
-      const newComment = await Comment.create({ comment, userId, postId });
+      const newComment = await Comment.create({ comment, userId: req.session.user.id, postId });
       res.send({ message: "success", data: newComment });
     } catch (e) {
       res.send({ message: "there was an error", error: e });

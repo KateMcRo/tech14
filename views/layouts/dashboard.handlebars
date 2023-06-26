@@ -33,19 +33,11 @@
         </div>
 
         <div class="navbar-end">
-          {{#unless user.loggedIn}}
-            <a
-              href="/signup"
-              class="button is-primary is-rounded"
-              id="signUp"
-            >Sign Up</a>
-            <a href="/login" class="button is-white is-rounded" id="logIn">Log
-              In</a>
-          {{/unless}}
-          {{#if user.loggedIn}}
-            <a href="/api/users/logout" class="button is-white is-rounded">Log
-              Out</a>
-          {{/if}}
+          <a href="/api/users/logout" class="button is-white is-rounded">Log Out</a>
+          <a
+            href="/dashboard/createpost"
+            class="button is-primary is-rounded"
+          >Create a Post</a>
         </div>
       </div>
     </nav>

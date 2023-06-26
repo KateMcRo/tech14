@@ -24,9 +24,7 @@ router.get("/", async(req, res) => {
 })
 
 router.get("/:id", async(req, res) => {
-    console.log("sometin")
     const id = req.params.id
-    console.log(id)
     const post = await Post.findByPk(id, {
         include: [
             {
@@ -41,15 +39,15 @@ router.get("/:id", async(req, res) => {
                 },
             },
         ],
-    })
-    console.log(post)
-    
+    })    
     res.send(post)
 })
 
 router.post("/create", async(req, res) => {
+    console.log(req.body)
+    console.log(req.session)
     try {
-        const post = await Post.create({title: req.body.title, content: req.body.content, userId: req.body.userId})
+        const post = await Post.create({title: req.body.title, content: req.body.content, userId: req.session.user.id})
         const result = await post.save()
         res.send({message: "success", data: result})
     } catch (e) {
