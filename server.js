@@ -8,7 +8,7 @@ const path = require('path');
 require('dotenv').config();
 
 const app = express()
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 
 const sessionStore = new SequelizeStore({
     db: connection,
@@ -36,9 +36,12 @@ app.use(express.json())
 app.use(controllers)
 
 
-app.listen(PORT, async() => {
-    console.log(`Listening on PORT ${PORT}`)
-    await connection.sync({ force: false});
-    console.log("Models synced")
-    
-})
+app.listen(PORT, async () => {
+    console.log(`Listening on PORT ${PORT}`);
+    try {
+      await sessionStore.sync();
+      console.log('Session store synced');
+    } catch (error) {
+      console.error('Unable to sync session store:', error);
+    }
+  });
