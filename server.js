@@ -37,9 +37,9 @@ app.use(controllers);
 app.listen(PORT, async () => {
   console.log(`Listening on PORT ${PORT}`);
   try {
-    await connection.sync({ force: true });
+    await connection.sync({ force: process.env.FORCE_CONNECTION });
     await sessionStore.sync({
-      force: true,
+      force: process.env.FORCE_SESSION,
     });
     console.log("Session store synced");
   } catch (error) {
