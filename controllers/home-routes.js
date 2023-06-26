@@ -29,6 +29,7 @@ router.get('/', async(req, res) => {
             posts
         })
     } catch (error) {
+        res.render("home")
         console.error(error);
         
     }
