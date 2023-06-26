@@ -3,11 +3,8 @@ const replyBtnEl = document.getElementById("reply")
 const cancelBtnEl = document.getElementById("cancel")
 
 async function handleCreateComment() {
-    console.log(window.location)
     const postId = parseInt(window.location.pathname.split("/")[2])
-    console.log(postId)
-     const comment = commentEl.value
-    console.log(comment)
+    const comment = commentEl.value
 
     const response = await fetch('/api/comments/create', {
         method: "POST",
@@ -17,7 +14,6 @@ async function handleCreateComment() {
         body: JSON.stringify({ comment, postId })
     });
     const data = await response.json()
-    console.log(data)
     if (response.ok) {
         location.reload()
     } else {

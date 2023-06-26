@@ -25,6 +25,4 @@ Post.init ({
     modelName: 'Post'
 });
 
-console.log(Post === sequelize.models.Post);
-
 module.exports = Post

@@ -20,6 +20,4 @@ Comment.init({
     modelName: 'Comment'
 });
 
-console.log(Comment === sequelize.models.Comment);
-
 module.exports = Comment

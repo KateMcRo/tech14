@@ -28,6 +28,4 @@ User.init({
     modelName: 'User'
 });
 
-console.log(User === sequelize.models.User);
-
 module.exports = User

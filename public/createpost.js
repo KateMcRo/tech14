@@ -5,8 +5,6 @@ const btnEl = document.getElementById("createBtn")
 async function handleCreatePost() {
     const title = titleEl.value
     const content = contentEl.value
-    console.log(title, content)
-
     const response = await fetch("/api/posts/create", {
         method: "POST",
         headers: {
@@ -15,7 +13,6 @@ async function handleCreatePost() {
         body: JSON.stringify({ title, content })
     });
     const data = await response.json()
-    console.log(data)
       if (response.ok) {
         window.location = "/dashboard";
       } else {

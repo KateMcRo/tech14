@@ -19,7 +19,6 @@ router.get("/", async(req, res) => {
             },
         ],
     })
-    console.log(posts)
     res.send(posts)
 })
 
@@ -44,8 +43,6 @@ router.get("/:id", async(req, res) => {
 })
 
 router.post("/create", async(req, res) => {
-    console.log(req.body)
-    console.log(req.session)
     try {
         const post = await Post.create({title: req.body.title, content: req.body.content, userId: req.session.user.id})
         const result = await post.save()

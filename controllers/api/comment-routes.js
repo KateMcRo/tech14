@@ -4,14 +4,12 @@ const router = express.Router()
 
 router.get("/", async(req, res) => {
     const comments = await Comment.findAll()
-    console.log(comments)
     res.send(comments)
 })
 
 router.get("/:id", async(req, res) => {
     const id = req.params.id
     const comment = await Comment.findByPk(id)
-    console.log(comment)
     res.send(comment)
 })
 

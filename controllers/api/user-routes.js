@@ -38,7 +38,6 @@ router.post("/create", async(req, res) => {
             id: result.id,
             username: result.username,
         };
-        console.log(req.session)
         res.send({
             message: "success", 
             data: result, 
@@ -51,10 +50,8 @@ router.post("/create", async(req, res) => {
 
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
-        console.log(username, password)
     try {
       const user = await User.findOne({ username });
-        console.log(user)
       if (user) {
         const passwordMatch = await bcrypt.compare(password, user.password);
             console.log(passwordMatch)

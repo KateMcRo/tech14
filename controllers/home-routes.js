@@ -22,7 +22,6 @@ router.get('/', async(req, res) => {
             const { User } = dataValues
             const username = User.dataValues.username
             dataValues.User = username
-            console.log(dataValues)
             return dataValues
         })
         res.render("home", {
@@ -36,7 +35,6 @@ router.get('/', async(req, res) => {
 })
 
 router.get('/signup', (req, res) => {
-    console.log(req.session)
     if(req.session.loggedIn){
         res.redirect("/dashboard")
     } else res.render("signup")
@@ -64,14 +62,12 @@ router.get('/post/:id', async(req, res) => {
         ],})
         const user = dataValues.User.dataValues
         const comments = dataValues.Comments
-      
-        //console.log(dataValues)
         const commentsWithUsers = comments.map((comment) => {
-            const commentData = comment.dataValues
-            const user = comment.dataValues.User
-            const userData = user.dataValues
-            const username = userData.username
-            return { commentData, username: username }
+        const commentData = comment.dataValues
+        const user = comment.dataValues.User
+        const userData = user.dataValues
+        const username = userData.username
+        return { commentData, username: username }
         })
         console.log(commentsWithUsers)
         
