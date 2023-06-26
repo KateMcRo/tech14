@@ -24,18 +24,30 @@
       <div class="navbar-brand"></div>
       <div class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" id="home">
+          <a href="/" class="navbar-item" id="home">
             Home
           </a>
-          <a class="navbar-item" id="dashboard">
+          <a href="/dashboard" class="navbar-item" id="dashboard">
             Dashboard
           </a>
         </div>
 
         <div class="navbar-end">
-          <a class="button is-primary is-rounded" id="signUp">Sign Up</a>
-          <a class="button is-white is-rounded" id="logIn">Log In</a>
+          {{#unless user.loggedIn}}
+            <a
+              href="/signup"
+              class="button is-primary is-rounded"
+              id="signUp"
+            >Sign Up</a>
+            <a href="/login" class="button is-white is-rounded" id="logIn">Log
+              In</a>
+          {{/unless}}
+          {{#if user.loggedIn}}
+            <a href="/api/users/logout" class="button is-white is-rounded">Log
+              Out</a>
+          {{/if}}
         </div>
+
       </div>
     </nav>
 

@@ -24,7 +24,9 @@ router.get("/", async(req, res) => {
 })
 
 router.get("/:id", async(req, res) => {
+    console.log("sometin")
     const id = req.params.id
+    console.log(id)
     const post = await Post.findByPk(id, {
         include: [
             {
@@ -40,6 +42,7 @@ router.get("/:id", async(req, res) => {
             },
         ],
     })
+    console.log(post)
     
     res.send(post)
 })

@@ -1,1 +1,19 @@
-<h1>Example App: Home</h1>
+{{#if posts.length}}
+    <h2>Posts:</h2>
+      {{#each posts}}
+    <ul>
+    <div class="box" style="background-color: hsl(0, 0%, 92%)">
+        <li style="display: inline; font-size: 20px; font-weight: bold;"><a href="post/{{id}}">{{this.title}}</a></li>
+        <div style="display: inline; float: right;">
+          Posted by: {{this.User}} 
+          on {{this.createdAt}}
+        </div>
+        <div style="background-color: whitesmoke;">
+          {{this.content}}
+        </div>
+    </div>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No posts available.</p>
+  {{/if}}

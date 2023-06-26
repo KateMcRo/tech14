@@ -1,1 +1,26 @@
 <h1>Single Post View</h1>
+<div class="box" style="background-color: hsl(0, 0%, 92%)">
+  <li
+    style="display: inline; font-size: 20px; font-weight: bold;"
+  >{{post.title}}</li>
+  <div style="display: inline; float: right;">
+    Posted by:
+    {{user.username}}
+    on
+    {{post.createdAt}}
+  </div>
+  <div style="background-color: whitesmoke;">
+    {{post.content}}
+  </div>
+  <ul>
+    {{#each comments}}
+      <div class="box" style="background-color: hsl(0, 0%, 93%)">
+        {{this.commentData.comment}}
+        <div style="display: inline; float: right;">
+          Comment From:
+          {{this.username}}
+        </div>
+      </div>
+    {{/each}}
+  </ul>
+</div>

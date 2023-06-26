@@ -3,6 +3,16 @@ const { User, Post, Comment } = require('../../models')
 const router = express.Router()
 const bcrypt = require('bcrypt');
 
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Error logging out: ", err);
+            return res.status(500).send('Internal Server Error');
+        }
+        res.redirect('/');
+    });
+});
+
 router.get("/", async(req, res) => {
     const users = await User.findAll({include: Post})
     res.send(users)
@@ -24,8 +34,11 @@ router.post("/create", async(req, res) => {
 
         const result = await user.save()
         req.session.loggedIn = true
-        req.session.user = result
-        console.log(user)
+        req.session.user = {
+            id: result.id,
+            username: result.username,
+        };
+        console.log(req.session)
         res.send({
             message: "success", 
             data: result, 
@@ -35,6 +48,31 @@ router.post("/create", async(req, res) => {
         res.send({message: "there was an error", error: e})
     }
 })
+
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+        console.log(username, password)
+    try {
+      const user = await User.findOne({ username });
+        console.log(user)
+      if (user) {
+        const passwordMatch = await bcrypt.compare(password, user.password);
+            console.log(passwordMatch)
+        if (passwordMatch) {
+            req.session.user = user
+            req.session.loggedIn = true
+          res.sendStatus(200); // Login successful
+        } else {
+          res.sendStatus(401); // Unauthorized
+        }
+      } else {
+        res.sendStatus(401); // Unauthorized
+      }
+    } catch (error) {
+      console.error('Error occurred during login:', error);
+      res.sendStatus(500); // Internal Server Error
+    }
+  });
 
 router.put("/:id", async(req, res) => {
     const id = req.params.id
@@ -53,5 +91,7 @@ router.delete("/:id", async(req, res) => {
     const result = await user.destroy()
     res.send(result)
 })
+
+
 
 module.exports = router
